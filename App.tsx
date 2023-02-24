@@ -5,114 +5,103 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import type {PropsWithChildren} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
+  Image,
+  Button,
+  AppRegistry,
   StyleSheet,
   Text,
   useColorScheme,
   View,
 } from 'react-native';
+import RNBootSplash from 'react-native-bootsplash';
 
 import {
   Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+AppRegistry.registerComponent('RNBootSplash', () => App);
+RNBootSplash.hide();
 
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+  function App(): JSX.Element {
+    return (
+      <View style={styles.container}>
+        <View style={styles.headerTop}>
+            <Text style={styles.headerText}> Dog Generator </Text>
+            <Text style={styles.normalText}> By; Maksim Sharoika </Text>
         </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
+        <View style={styles.bodyMiddle}>
+        <Image style={styles.image} source={require('./src/images/rosa.png')} />
+        </View>
+        <View style={styles.footerBottom}>
+          <View style={styles.imageContainer}>
+          <Button
+            title="Generate Doggo"
+            color="#FFFFFF"
+            onPress={() => console.log("Reset Doggo")}
+          />
+          </View>
+        </View>
+      </View>
+    );
+  }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+  const styles = StyleSheet.create({
+    container: {
+      flex: 4,
+      flexDirection: 'column',
+      backgroundColor: Colors.lighter,
+      paddingTop: 50,
+      paddingBottom: 50,
+    },
+    headerTop: {
+      justifyContent: 'center',
+      flex: 1,
+    },
+    bodyMiddle: {
+      justifyContent: 'center',
+      flex: 7,
+    },
+    footerBottom: {
+      justifyContent: 'center',
+      flex: 1,
+    },
+    image: {
+      alignSelf: 'center',
+      backgroundColor: Colors.lighter,
+      height: 500,
+      width: 300,
+      borderRadius: 50,
+      borderColor: Colors.black,
+      borderWidth: 5,
+      resizeMode: 'cover',
+    },
+    imageContainer: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: Colors.black,
+      borderRadius: 50,
+      marginTop: 30,
+      marginBotton: 30,
+      marginLeft: 100,
+      marginRight: 100,
+    },
+    headerText: {
+      alignSelf: 'center', 
+      fontSize: 24,
+      paddingTop: 10,
+    },
+    normalText: {
+      alignSelf: 'center', 
+      fontSize: 12,
+      paddingTop: 6,
+    },
+  });
+  
+  export default App;
