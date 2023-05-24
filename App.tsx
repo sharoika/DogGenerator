@@ -1,35 +1,38 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React, { useEffect } from 'react';
-import type {PropsWithChildren} from 'react';
+import React, { useState } from 'react';
 import {
   Image,
   Button,
   AppRegistry,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
 } from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
-
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
 
 AppRegistry.registerComponent('RNBootSplash', () => App);
 RNBootSplash.hide();
 
   function App(): JSX.Element {
+    const [dogImage, setDogImage] = useState();
+    const [dogCounter, setDogCounter] = useState(0);
+
+    const getDogFromApi = async () => {
+      return fetch('https://dog.ceo/api/breeds/image/random')
+        .then(response => 
+          response.json()
+        )
+        .then(json => {
+          setDogImage(json.message);
+          setDogCounter(dogCounter + 1);
+        })
+        .catch(error => {
+          console.error(error.status);
+        });
+    };
+
     return (
       <View style={styles.container}>
         <View style={styles.headerTop}>
@@ -37,14 +40,21 @@ RNBootSplash.hide();
             <Text style={styles.normalText}> By; Maksim Sharoika </Text>
         </View>
         <View style={styles.bodyMiddle}>
-        <Image style={styles.image} source={require('./src/images/rosa.png')} />
+          {
+            dogImage 
+            ?
+            <Image style={styles.image} source={{uri: dogImage}} />
+            :
+            <Image style={styles.image} source={require('./src/images/rosa.png')} />
+          }
         </View>
         <View style={styles.footerBottom}>
+        <Text style={styles.counterText}> Dog Count : {dogCounter} </Text>
           <View style={styles.imageContainer}>
           <Button
             title="Generate Doggo"
             color="#FFFFFF"
-            onPress={() => console.log("Reset Doggo")}
+            onPress={() => getDogFromApi()}
           />
           </View>
         </View>
@@ -87,7 +97,7 @@ RNBootSplash.hide();
       justifyContent: 'center',
       backgroundColor: Colors.black,
       borderRadius: 50,
-      marginTop: 30,
+      marginTop: 10,
       marginBotton: 30,
       marginLeft: 100,
       marginRight: 100,
@@ -96,6 +106,11 @@ RNBootSplash.hide();
       alignSelf: 'center', 
       fontSize: 24,
       paddingTop: 10,
+    },
+    counterText: {
+      alignSelf: 'center', 
+      fontSize: 20,
+      paddingTop: 4,
     },
     normalText: {
       alignSelf: 'center', 
