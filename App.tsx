@@ -11,9 +11,11 @@ RNBootSplash.hide();
 function App(): JSX.Element {
 
   const [dogImage, setDogImage] = useState();
+  const [loading, setLoading] = useState(false);
   const [dogCounter, setDogCounter] = useState(0);
 
   const getDogFromApi = async () => {
+    setLoading(true)
     return fetch('https://dog.ceo/api/breeds/image/random')
       .then(response =>
         response.json()
@@ -21,6 +23,7 @@ function App(): JSX.Element {
       .then(json => {
         setDogImage(json.message);
         setDogCounter(dogCounter + 1);
+        setLoading(false)
       })
       .catch(error => {
         console.error(error.status);
@@ -38,26 +41,49 @@ function App(): JSX.Element {
 
       <View style={styles.bodyMiddle}>
         {
-          dogImage
-            ?
-            <Image style={styles.image} source={{ uri: dogImage }} />
-            :
-            <Image style={styles.image} source={require('./src/images/rosa.png')} />
+          loading 
+          ?
+            <Image style={styles.imageLoading} source={require('./src/logo/logo.png')} />
+          :
+          (
+            dogImage
+              ?
+              <Image style={styles.image} source={{ uri: dogImage }} />
+              :
+              <Image style={styles.image} source={require('./src/images/rosa.png')} />
+          )
         }
       </View>
 
       <View style={styles.footerBottom}>
         <View style={styles.buttonsContainer}>
+          {
+          loading
+          ?
+          (
+          <Button
+            title="Waiting..."
+            titleStyle={{ color: 'white' }}
+            buttonStyle={{
+              backgroundColor: 'rgba(223, 148, 65, 1)',
+              borderRadius: 5,
+            }}
+            onPress={() => getDogFromApi()}
+          />
+          )
+          :
+          (
           <Button
             title="Generate Doggo"
             titleStyle={{ color: 'white' }}
             buttonStyle={{
-              backgroundColor: 'rgba(0, 0, 0, 1)',
+              backgroundColor: 'rgba(223, 148, 65, 1)',
               borderRadius: 5,
             }}
             onPress={() => getDogFromApi()}
-          
           />
+          )
+        }
           </View>
         <Text style={styles.counterText}> Dog Count : {dogCounter} </Text>
       </View>
@@ -71,7 +97,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: Colors.lighter,
+    backgroundColor: "#805300",
     paddingTop: '10%',
     paddingBottom: '10%',
   },
@@ -96,13 +122,23 @@ const styles = StyleSheet.create({
   },
   image: {
     alignSelf: 'center',
-    backgroundColor: Colors.lighter,
+    backgroundColor: Colors.black,
     height: '90%',
     width: '80%',
     borderRadius: 50,
-    borderColor: Colors.black,
+    borderColor: "#DF9441",
     borderWidth: 5,
     resizeMode: 'cover',
+  },
+  imageLoading: {
+    alignSelf: 'center',
+    backgroundColor: Colors.black,
+    height: '90%',
+    width: '80%',
+    borderRadius: 50,
+    borderColor: "#DF9441",
+    borderWidth: 5,
+    resizeMode: 'center',
   },
   imageContainer: {
     alignItems: 'center',
@@ -115,16 +151,19 @@ const styles = StyleSheet.create({
   headerText: {
     alignSelf: 'center',
     fontSize: 24,
+    color: Colors.white,
     paddingTop: '2%',
   },
   normalText: {
     alignSelf: 'center',
     fontSize: 12,
+    color: Colors.white,
     paddingTop: '2%'
   },
   counterText: {
     alignSelf: 'center',
     fontSize: 20,
+    color: Colors.white,
     paddingTop: '4%',
   }
 });
