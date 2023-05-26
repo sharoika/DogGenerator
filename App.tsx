@@ -12,7 +12,7 @@ function App(): JSX.Element {
 
   const [dogImage, setDogImage] = useState();
   const [loading, setLoading] = useState(false);
-  const [dogCounter, setDogCounter] = useState(0);
+  const [dogCounter, setDogCounter] = useState(1);
 
   const getDogFromApi = async () => {
     setLoading(true)
@@ -41,10 +41,6 @@ function App(): JSX.Element {
 
       <View style={styles.bodyMiddle}>
         {
-          loading 
-          ?
-            <Image style={styles.imageLoading} source={require('./src/logo/logo.png')} />
-          :
           (
             dogImage
               ?
