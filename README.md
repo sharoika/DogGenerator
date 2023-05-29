@@ -3,9 +3,7 @@
 A react native application that is connected to a a dog image API to have unlimited images. 
 
 ## Project Screen Shot(s)
-
-#### Example:   
-
+ 
 <img src="https://github.com/sharoika/DogGenerator/assets/27317883/30ee023c-c5eb-4bde-a72e-f45f07e26c49" width="150">
 <img src="https://github.com/sharoika/DogGenerator/assets/27317883/e707578f-2bfe-4ba3-86bb-daaf67afc69c" width="150">
 <img src="https://github.com/sharoika/DogGenerator/assets/27317883/962d7e72-c937-4258-9003-85ebb29efffa" width="150">
