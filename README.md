@@ -6,11 +6,11 @@ A react native application that is connected to a a dog image API to have unlimi
 
 #### Example:   
 
-<img src="https://github.com/sharoika/DogGenerator/assets/27317883/30ee023c-c5eb-4bde-a72e-f45f07e26c49" width="100">
-<img src="https://github.com/sharoika/DogGenerator/assets/27317883/e707578f-2bfe-4ba3-86bb-daaf67afc69c" width="100">
-<img src="https://github.com/sharoika/DogGenerator/assets/27317883/962d7e72-c937-4258-9003-85ebb29efffa" width="100">
-<img src="https://github.com/sharoika/DogGenerator/assets/27317883/59107682-8582-4d4a-94a0-b0858ce37bcd" width="100">
-<img src="https://github.com/sharoika/DogGenerator/assets/27317883/02cfcb14-ad40-4110-b5b5-f84891d50ba7" width="100">
+<img src="https://github.com/sharoika/DogGenerator/assets/27317883/30ee023c-c5eb-4bde-a72e-f45f07e26c49" width="120">
+<img src="https://github.com/sharoika/DogGenerator/assets/27317883/e707578f-2bfe-4ba3-86bb-daaf67afc69c" width="120">
+<img src="https://github.com/sharoika/DogGenerator/assets/27317883/962d7e72-c937-4258-9003-85ebb29efffa" width="120">
+<img src="https://github.com/sharoika/DogGenerator/assets/27317883/59107682-8582-4d4a-94a0-b0858ce37bcd" width="120">
+<img src="https://github.com/sharoika/DogGenerator/assets/27317883/02cfcb14-ad40-4110-b5b5-f84891d50ba7" width="120">
 
 ## Installation and Setup Instructions
 
